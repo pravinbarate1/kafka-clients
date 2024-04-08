@@ -1,12 +1,16 @@
 package examples;
 
 import org.apache.kafka.clients.producer.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
 public class ProducerExample {
+
+    private static final Logger log = LoggerFactory.getLogger(ProducerExample.class);
 
     public static void main(final String[] args) throws IOException {
         if (args.length != 1) {
@@ -36,6 +40,7 @@ public class ProducerExample {
                                 System.out.printf("Produced event to topic %s: key = %-10s value = %s%n", topic, user, item);
                         });
             }
+            log.info("%s events were produced to topic %s%n",numMessages, topic);
             System.out.printf("%s events were produced to topic %s%n", numMessages, topic);
         }
 
