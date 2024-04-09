@@ -29,6 +29,16 @@ public class KafkaConsumerApplication {
       while (keepConsuming) {
         final ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofSeconds(1));
         recordsHandler.process(consumerRecords);
+
+        /**try{
+          consumer.commitSync();
+        }catch(CommitFailedException e){
+          System.out.println("commit failed "+e);
+          e.printStackTrace();
+        }*/
+
+        //consumer.commitSync();
+        
       }
     } finally {
       consumer.close();
